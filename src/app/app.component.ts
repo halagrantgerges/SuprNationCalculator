@@ -13,10 +13,13 @@ export class AppComponent {
   title = 'SuprNationCalculator';
   expression:any='';
   result:any;
-  calculatorElements=[1,2,3,4,5,6,7,8,9,'+', '−', '∗', '/','sin', 'cos', 'tan','del','C','RAND'];
+  calculatorElements=[0,1,2,3,4,5,6,7,8,9,'+', '−', '∗', '/','sin', 'cos', 'tan','del','C','RAND'];
   shouldInsertBraces=false;
+
+
+  // this function is being called at the change of the input
   onChange(newValue:any) {
-    
+// check if the value is not empty
     if(newValue===''){
       this.result='';
       return;
@@ -25,6 +28,7 @@ export class AppComponent {
     this.result =isNaN(evaluation)?' Invalid Expression!':evaluation;  
 }
 
+// this method appends expression from the UI calculator to the current expression
 appendExp(expr:any){
   switch(expr){
     case 'del':
@@ -47,6 +51,7 @@ appendExp(expr:any){
           this.onChange(this.expression);
         break;
      default:
+    
   this.expression+=expr.toString()+this.insertBraces();
   this.onChange(this.expression);
        break; 
@@ -63,11 +68,11 @@ this.shouldInsertBraces=false;
 }
 
 expr (expr:any) {
+  console.log("evaluating",expr);
   // locate braces and evaluate expressions between braces using recursion
-
-//     expr.match(/((sin)|(cos)|(tan))\((.*?)\)/g)?.map((b)=>b.replace(/(.*?\))\)/g,"$1"))
- const innerBracesArr=expr.match(/\((.*?)\)/g)?.map((b:any)=>b.replace(/\(|(.*?)\)/g,"$1"));
-//  const innerBracesArr=expr.match(/((sin)|(cos)|(tan))?\((.*?)\)/g)?.map((b:any)=>b.replace(/(.*?\))\)/g,"$1"));;
+  const innerBracesArr=expr.match(/\((.*?)\)/g)?.map((b:any)=>b.replace(/\(|(.*?)\)/g,"$1"));
+  //     expr.match(/((sin)|(cos)|(tan))\((.*?)\)/g)?.map((b)=>b.replace(/(.*?\))\)/g,"$1"))
+ //  const innerBracesArr=expr.match(/((sin)|(cos)|(tan))?\((.*?)\)/g)?.map((b:any)=>b.replace(/(.*?\))\)/g,"$1"));;
  innerBracesArr?.forEach((innerExpression:any) => {
    if(isNaN(innerExpression)){ // not a number which means expression (evaluate inner expression)
     expr= expr.replace('('+innerExpression+')',this.expr(innerExpression) ) ;
@@ -126,7 +131,6 @@ const concat= chars[c]+''+chars[c+1]+''+chars[c+2]+''+chars[c+3];
       }
   }
 
-  console.log("op",op,n);
 
   // Calculate the expression
   expr = parseFloat(n[0]);
@@ -137,10 +141,10 @@ const concat= chars[c]+''+chars[c+1]+''+chars[c+2]+''+chars[c+3];
           case "+":
               expr = expr + num;
               break;
-          case "-":
+          case "-": case'−':
               expr = expr - num;
               break;
-          case "*":
+          case "*": case '∗':
               expr = expr * num;
               break;
           case "/":
@@ -149,7 +153,6 @@ const concat= chars[c]+''+chars[c+1]+''+chars[c+2]+''+chars[c+3];
           
       }
   }
-
   return expr;
 }
 
