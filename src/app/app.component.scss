@@ -62,7 +62,7 @@
     padding: 0 16px;
     max-width: 960px;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
   }
 
   svg.material-icons {
@@ -110,17 +110,22 @@
     height: 16px;
     width: 168px;
   }
+  .card.card-medium {
+    height: 16px;
+    width: 300px;
+    justify-content: start !important;
+  }
 
-  .card-container .card:not(.highlight-card) {
+  .card-container .card-animated:not(.highlight-card) {
     cursor: pointer;
   }
 
-  .card-container .card:not(.highlight-card):hover {
+  .card-container .card-animated:not(.highlight-card):hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
   }
 
-  .card-container .card:not(.highlight-card):hover .material-icons path {
+  .card-container .card-animated:not(.highlight-card):hover .material-icons path {
     fill: rgb(105, 103, 103);
   }
 

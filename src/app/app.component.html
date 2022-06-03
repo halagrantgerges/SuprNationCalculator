@@ -6,14 +6,22 @@
 </div>
 
 <div class="content" role="main">
-
-
   <div class="card-container">
-    <div class="card card-small">
-      <span>1</span>
+<div class="card card-medium">
+  <input type="text" mat-input class="w-100" [(ngModel)]="expression"  (ngModelChange)="onChange($event)">
+
+</div>
+<div class="card card-medium">
+ result:{{result}}
+
+</div>
+</div>
+
+
+  <div  class="card-container">
+    <div *ngFor='let i of calculatorElements' class="card card-animated card-small" (click)="appendExp(i)">
+      <span>{{i}}</span>
     </div>
-
-
   </div>
 
 
