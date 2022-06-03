@@ -62,7 +62,11 @@
     padding: 0 16px;
     max-width: 960px;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
+  }
+  .alignLeft{
+    align-items: start !important;
+    justify-content: start !important;
   }
 
   svg.material-icons {
@@ -112,8 +116,8 @@
   }
   .card.card-medium {
     height: 16px;
-    width: 300px;
-    justify-content: start !important;
+    width: 372px;
+    justify-content: center;
   }
 
   .card-container .card-animated:not(.highlight-card) {
