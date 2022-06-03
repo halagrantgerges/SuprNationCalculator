@@ -23,6 +23,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## covered test cases:
 3 + 2 + 4 
+<br/>
 +2 
 −2 
 sin(30) + cos(20) 
