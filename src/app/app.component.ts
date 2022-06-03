@@ -24,7 +24,7 @@ export class AppComponent {
       this.result='';
       return;
     }
-    const evaluation=this.expr(newValue);
+    const evaluation=this.evaluateExp(newValue);
     this.result =isNaN(evaluation)?' Invalid Expression!':evaluation;  
 }
 
@@ -67,7 +67,7 @@ this.shouldInsertBraces=false;
   else return '';
 }
 
-expr (expr:any) {
+evaluateExp (expr:any) {
   console.log("evaluating",expr);
   // locate braces and evaluate expressions between braces using recursion
   const innerBracesArr=expr.match(/\((.*?)\)/g)?.map((b:any)=>b.replace(/\(|(.*?)\)/g,"$1"));
@@ -75,7 +75,7 @@ expr (expr:any) {
  //  const innerBracesArr=expr.match(/((sin)|(cos)|(tan))?\((.*?)\)/g)?.map((b:any)=>b.replace(/(.*?\))\)/g,"$1"));;
  innerBracesArr?.forEach((innerExpression:any) => {
    if(isNaN(innerExpression)){ // not a number which means expression (evaluate inner expression)
-    expr= expr.replace('('+innerExpression+')',this.expr(innerExpression) ) ;
+    expr= expr.replace('('+innerExpression+')',this.evaluateExp(innerExpression) ) ;
    }
  });
   var chars = expr;
@@ -99,6 +99,7 @@ const concat= chars[c]+''+chars[c+1]+''+chars[c+2]+''+chars[c+3];
         finalNumber+=chars[c];
         c++;
       }
+      // switch 
       switch (concat){
         case 'sin(':
           chars=chars.toString().replace('sin('+finalNumber+')',Math.sin(parseInt(finalNumber)));
