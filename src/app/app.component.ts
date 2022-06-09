@@ -67,6 +67,51 @@ this.shouldInsertBraces=false;
   else return '';
 }
 
+//array A 
+// a,b
+/**
+ * 
+ * function mapArr<A, B>(source: A[], mapFn: (a: A) => B): B[]
+ * mapArr([1, 2, 3], x => x * 2) = [2, 4, 6]
+ */
+mapArr<A, B>(source: A[], mapFn: (a: A) => B): B[]{
+
+  let resArr:B[]=[];
+  source.forEach(element=>{
+resArr.push(mapFn(element));
+});
+return resArr;
+}
+/**
+ * 
+ * function flatMapArr<A, B>(source: A[], mapFn: A => B[]): B [] = ???
+ * 
+ */
+//  flatMapArr<A, B>(source: A[], mapFn: B[]): B[]{
+  flatMapArr<A, B>(source: A[], mapFn: (a: A) => B[]): B [] {
+  let resArr:B[]=[];
+  source.forEach(element=>{
+resArr.concat(mapFn(element));
+});
+return resArr;
+}
+
+/**
+ * 
+ *  filter([1, 2, 3], x => x % 2 == 0)
+2
+[2]
+ */
+filterArr<A>(source: A[], mapFn: (a: A) => boolean): A [] {
+  let resArr:A[]=[];
+  source.forEach(element=>{
+    if(mapFn(element)){
+resArr.push(element);
+    }
+});
+return resArr;
+}
+
 evaluateExp (expr:any) {
   console.log("evaluating",expr);
   // locate braces and evaluate expressions between braces using recursion
